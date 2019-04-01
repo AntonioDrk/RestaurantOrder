@@ -1,11 +1,11 @@
 package com.bigrestaurant.fmi.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class Order {
+public class Order implements Comparable<Order>{
     private static long id = 0;
     private long orderId;
-    private Float totalPrice = 0f;
     private ArrayList<Item> orderedItems;
 
     public Order(ArrayList<Item> orderedItems) {
@@ -15,6 +15,7 @@ public class Order {
     }
 
     public Float getTotalPrice() {
+        Float totalPrice = 0f;
         for (Item i:orderedItems) {
             totalPrice += i.getPrice();
         }
@@ -23,5 +24,25 @@ public class Order {
 
     public long getOrderId() {
         return orderId;
+    }
+
+    public Float getTotalDuration(){
+        Float totalTimeToCook = 0f;
+        for(Item i:orderedItems){
+            totalTimeToCook += i.getTimeToCook();
+        }
+
+        return totalTimeToCook;
+    }
+
+    public ArrayList<Item> getSortedItemsTime(){
+        ArrayList<Item> sortedItemsTime = orderedItems;
+        Collections.sort(sortedItemsTime);
+        return sortedItemsTime;
+    }
+
+    @Override
+    public int compareTo(Order o) {
+        return this.getTotalDuration().compareTo(o.getTotalDuration());
     }
 }

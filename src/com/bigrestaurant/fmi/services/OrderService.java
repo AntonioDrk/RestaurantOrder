@@ -4,10 +4,12 @@ import com.bigrestaurant.fmi.model.Menu;
 import com.bigrestaurant.fmi.model.Order;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class OrderService {
     private static OrderService instance = new OrderService();
-    private static Order[] listOfOrders = new Order[5];
+    private static List<Order> listOfOrders;
 
     private OrderService() {
         System.out.println("--- OrderService Initialization ---");
@@ -27,7 +29,20 @@ public class OrderService {
         System.out.println("Total price for order " + order2.getOrderId() + " is: " + order2.getTotalPrice());
     }
 
+
+
     public static OrderService getInstance(){
         return instance;
+    }
+
+    public static List<Order> getSortedOrdersTime(){
+        List<Order> sortedOrderTime = listOfOrders;
+        Collections.sort(sortedOrderTime);
+        return sortedOrderTime;
+    }
+
+    @Override
+    public String toString(){
+        return "";
     }
 }

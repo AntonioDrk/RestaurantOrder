@@ -1,8 +1,6 @@
 package com.bigrestaurant.fmi.model;
 
-import org.jetbrains.annotations.Contract;
-
-public class Item {
+public class Item implements Comparable<Item>{
 
     private String name;
     private String description;
@@ -19,25 +17,15 @@ public class Item {
         this.timeToCook = timeToCook;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
-    public String getDescription() {
-        return description;
-    }
+    public String getDescription() { return description; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) { this.description = description; }
 
-    public Float getPrice() {
-        return price.getPrice();
-    }
+    public Float getPrice() { return price.getPrice(); }
 
     public void setPrice(Price price) {
         this.price = price;
@@ -57,5 +45,11 @@ public class Item {
 
     public void setTimeToCook(Integer timeToCook) {
         this.timeToCook = timeToCook;
+    }
+
+    // Implement compare method for Collections.sort
+    @Override
+    public int compareTo(Item item){
+        return this.timeToCook.compareTo(item.timeToCook);
     }
 }
