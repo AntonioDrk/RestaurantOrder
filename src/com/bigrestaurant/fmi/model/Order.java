@@ -2,6 +2,7 @@ package com.bigrestaurant.fmi.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class Order implements Comparable<Order>{
     private static long id = 0;
@@ -45,12 +46,6 @@ public class Order implements Comparable<Order>{
         }
 
         return totalTimeToCook;
-    }
-
-    public ArrayList<Item> getSortedItemsTime(){
-        ArrayList<Item> sortedItemsTime = orderedItems;
-        Collections.sort(sortedItemsTime);
-        return sortedItemsTime;
     }
 
     @Override
