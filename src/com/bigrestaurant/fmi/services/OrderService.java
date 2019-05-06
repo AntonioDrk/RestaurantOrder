@@ -1,48 +1,40 @@
 package com.bigrestaurant.fmi.services;
 import com.bigrestaurant.fmi.model.Item;
-import com.bigrestaurant.fmi.model.Menu;
 import com.bigrestaurant.fmi.model.Order;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class OrderService {
     private static OrderService instance = new OrderService();
-    private static List<Order> listOfOrders;
+    private static ArrayList<Order> listOfOrders = new ArrayList<>();
 
     private OrderService() {
         System.out.println("--- OrderService Initialization ---");
-
-        ArrayList<Item> menuList = Menu.getInstance().getMenuList();
-
-        ArrayList<Item> itemsToOrder = new ArrayList<Item>();
-        itemsToOrder.add(menuList.get(1));
-        itemsToOrder.add(menuList.get(2));
-        itemsToOrder.add(menuList.get(4));
-        itemsToOrder.add(menuList.get(5));
-
-        Order order1 = new Order(itemsToOrder);
-        Order order2 = new Order(itemsToOrder);
-
-        System.out.println("Total price for order " + order1.getOrderId() + " is: " + order1.getTotalPrice());
-        System.out.println("Total price for order " + order2.getOrderId() + " is: " + order2.getTotalPrice());
     }
 
+    public void displayCostOfOrder(Integer orderIndex){
+        if(orderIndex - 1 < listOfOrders.size()){
+            System.out.println("\n\nCost of order no [" + orderIndex + "] is : " + listOfOrders.get(orderIndex-1).getTotalPrice() + "\n\n");
+        }else{
+            System.out.println("\n\nThe entered number is out of bounds, try again.\n\n");
+        }
+    }
 
+    public void displayOrders(){
+        System.out.println("\n\n---- Orders ----\n");
+        for(Order order:listOfOrders){
+            Integer index = listOfOrders.indexOf(order) + 1;
+            System.out.println("[" + index + "] " + order.toString());
+        }
+        System.out.println("\n----        ----\n\n");
+    }
+
+    public void placeOrder(ArrayList<Item> itemsOrdered){
+        Order currentOrder = new Order(itemsOrdered);
+        listOfOrders.add(currentOrder);
+    }
 
     public static OrderService getInstance(){
         return instance;
-    }
-
-    public static List<Order> getSortedOrdersTime(){
-        List<Order> sortedOrderTime = listOfOrders;
-        Collections.sort(sortedOrderTime);
-        return sortedOrderTime;
-    }
-
-    @Override
-    public String toString(){
-        return "";
     }
 }

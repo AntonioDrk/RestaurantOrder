@@ -22,6 +22,18 @@ public class Order implements Comparable<Order>{
         return totalPrice;
     }
 
+    public String toString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\nOrder id: ");
+        stringBuilder.append(id);
+        stringBuilder.append('\n');
+        for(Item item: orderedItems){
+            stringBuilder.append(item.toString());
+            stringBuilder.append('\n');
+        }
+        return stringBuilder.toString();
+    }
+
     public long getOrderId() {
         return orderId;
     }

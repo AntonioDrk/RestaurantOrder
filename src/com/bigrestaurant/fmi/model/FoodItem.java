@@ -1,5 +1,7 @@
 package com.bigrestaurant.fmi.model;
 
+import java.util.Date;
+
 public class FoodItem extends Item{
 
     private Float quantity; // In grams
@@ -9,5 +11,7 @@ public class FoodItem extends Item{
         this.quantity = quantity;
     }
 
-
+    public String toString(){
+        return super.toString() + "  -  " + quantity.toString() + "g";
+    }
 }
